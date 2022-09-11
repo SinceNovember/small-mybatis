@@ -5,17 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="commit mybatis-step-02">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/SqlSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/SqlSessionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSessionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/ISchoolDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/BaseBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLConfigBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/io/Resources.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/MappedStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/SqlCommandType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/SqlSessionFactoryBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/po/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/mapper/User_Mapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/mybatis-config-datasource.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperProxyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperProxyFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/SqlSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/SqlSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSessionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSessionFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/ISchoolDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/IUserDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +32,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -32,7 +40,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="mybatis-step-01" />
+        <entry key="$PROJECT_DIR$" value="mybatis-step-02" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +74,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.49425286",
-    "settings.editor.selected.configurable": "editing.templates"
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -96,6 +104,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
+        <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
+        <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
         <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
         <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
       </list>
@@ -154,19 +165,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="mybatis-step-02" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -178,7 +177,17 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
+                  <option value="mybatis-step-03" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
                   <option value="mybatis-step-02" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
                 </option>
               </RecentGroup>
               <RecentGroup>
