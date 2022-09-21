@@ -4,35 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="commit mybatis-step-02">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/DataSourceFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/druid/DruidDataSourceFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/BoundSql.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/Environment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/ParameterMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/TransactionIsolationLevel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/transaction/Transaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/transaction/TransactionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/transaction/jdbc/JdbcTransaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/transaction/jdbc/JdbcTransactionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/JdbcType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/TypeAliasRegistry.java" afterDir="false" />
+    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="commit mybatis-step-04-t">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/pooled/PoolState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/pooled/PooledConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/pooled/PooledDataSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/pooled/PooledDataSourceFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/unpooled/UnpooledDataSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/unpooled/UnpooledDataSourceFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperProxyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperProxyFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/BaseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/BaseBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLConfigBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLConfigBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/MappedStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/MappedStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/ISchoolDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/IUserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/mapper/User_Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/mapper/User_Mapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/mybatis-config-datasource.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/mybatis-config-datasource.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,10 +33,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="mybatis-step-02" />
+        <entry key="$PROJECT_DIR$" value="mybatis-step-04" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -135,6 +118,10 @@
       <option name="presentableId" value="Default" />
       <updated>1662792603758</updated>
       <workItem from="1662792605465" duration="6611000" />
+      <workItem from="1663511517576" duration="25000" />
+      <workItem from="1663511658902" duration="44000" />
+      <workItem from="1663595510455" duration="6823000" />
+      <workItem from="1663679979859" duration="8588000" />
     </task>
     <task id="LOCAL-00001" summary="commit mybatis-step-01">
       <created>1662821829862</created>
@@ -157,7 +144,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662872953890</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit mybatis-step-02 apiTest">
+      <created>1663423546488</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1663423546488</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit mybatis-step-04-t">
+      <created>1663424557752</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1663424557752</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +234,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit mybatis-step-01" />
     <MESSAGE value="commit mybatis-step-02" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit mybatis-step-02" />
+    <MESSAGE value="commit mybatis-step-04" />
+    <MESSAGE value="commit mybatis-step-02 apiTest" />
+    <MESSAGE value="commit mybatis-step-04-t" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit mybatis-step-04-t" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
