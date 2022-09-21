@@ -4,8 +4,16 @@ import com.simple.mybatis.binding.MapperRegistry;
 import com.simple.mybatis.datasource.druid.DruidDataSourceFactory;
 import com.simple.mybatis.datasource.pooled.PooledDataSourceFactory;
 import com.simple.mybatis.datasource.unpooled.UnpooledDataSourceFactory;
+import com.simple.mybatis.executor.Executor;
+import com.simple.mybatis.executor.SimpleExecutor;
+import com.simple.mybatis.executor.resultset.DefaultResultSetHandler;
+import com.simple.mybatis.executor.resultset.ResultSetHandler;
+import com.simple.mybatis.executor.statement.PreparedStatementHandler;
+import com.simple.mybatis.executor.statement.StatementHandler;
+import com.simple.mybatis.mapping.BoundSql;
 import com.simple.mybatis.mapping.Environment;
 import com.simple.mybatis.mapping.MappedStatement;
+import com.simple.mybatis.transaction.Transaction;
 import com.simple.mybatis.transaction.jdbc.JdbcTransactionFactory;
 import com.simple.mybatis.type.TypeAliasRegistry;
 
@@ -76,5 +84,27 @@ public class Configuration {
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
+
+    /**
+     * 创建结果集处理器
+     */
+    public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, BoundSql boundSql) {
+        return new DefaultResultSetHandler(executor, mappedStatement, boundSql);
+    }
+
+    /**
+     * 生产执行器
+     */
+    public Executor newExecutor(Transaction transaction) {
+        return new SimpleExecutor(this, transaction);
+    }
+
+    /**
+     * 创建语句处理器
+     */
+    public StatementHandler newStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameter, ResultHandler resultHandler, BoundSql boundSql) {
+        return new PreparedStatementHandler(executor, mappedStatement, parameter, resultHandler, boundSql);
+    }
+
 
 }
