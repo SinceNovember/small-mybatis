@@ -7,7 +7,11 @@ import com.simple.mybatis.session.defaults.DefaultSqlSessionFactory;
 import java.io.Reader;
 
 /**
+ * sql会话工厂建造者
  * 构建SqlSessionFactory的工厂
+ *
+ * @author SinceNovember
+ * @date 2022/09/24
  */
 public class SqlSessionFactoryBuilder {
 

@@ -4,21 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="commit mybatis-step-05 连接池化">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/BaseExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/Executor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/SimpleExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/ResultSetHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/BaseStatementHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/PreparedStatementHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/SimpleStatementHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/StatementHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/ResultHandler.java" afterDir="false" />
+    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="commit mybatis-step-07 反射器提交">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/wrapper/BeanWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/wrapper/CollectionWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/wrapper/DefaultObjectWrapperFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/wrapper/MapWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ReflectionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSessionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSessionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/pooled/PooledDataSourceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/pooled/PooledDataSourceFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/unpooled/UnpooledDataSourceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/unpooled/UnpooledDataSourceFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/MetaObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/MetaObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/SystemMetaObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/SystemMetaObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/factory/DefaultObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/factory/DefaultObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/wrapper/BaseWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/wrapper/BaseWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/wrapper/ObjectWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/reflection/wrapper/ObjectWrapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,11 +37,21 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="mybatis-step-05" />
+        <entry key="$PROJECT_DIR$" value="mybatis-step-06" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
+    <option name="RESET_MODE" value="SOFT" />
+  </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="反射提交" />
+        <option name="rewordedMessage" value="commit mybatis-step-07 反射器提交" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="34192d7e08cfa5aa66417907b7c42e54fda56307" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -73,7 +82,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.49425286&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;
   }
 }</component>
   <component name="RebelAgentSelection">
@@ -81,6 +90,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.simple.mybatis.reflection.invoker" />
       <recent name="com.simple.mybatis.executor.statement" />
       <recent name="com.simple.mybatis.executor" />
       <recent name="com.simple.mybatis.executor.resultset" />
@@ -92,7 +102,7 @@
       <recent name="com.simple.mybatis.test" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ApiTest.test_MapperProxyFactory">
     <configuration name="ApiTest.test_MapperProxyFactory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="small-mybatis" />
       <extension name="coverage">
@@ -109,13 +119,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ReflectionTest.test_reflection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="small-mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.simple.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.simple.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.simple.mybatis.test.ReflectionTest" />
+      <option name="METHOD_NAME" value="test_reflection" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
-        <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
-        <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
-        <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
-        <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
+        <item itemvalue="JUnit.ReflectionTest.test_reflection" />
       </list>
     </recent_temporary>
   </component>
@@ -132,7 +155,11 @@
       <workItem from="1663511658902" duration="44000" />
       <workItem from="1663595510455" duration="6823000" />
       <workItem from="1663679979859" duration="9445000" />
-      <workItem from="1663768399137" duration="8019000" />
+      <workItem from="1663768399137" duration="8093000" />
+      <workItem from="1663940552763" duration="4080000" />
+      <workItem from="1664033096471" duration="269000" />
+      <workItem from="1664033371987" duration="2752000" />
+      <workItem from="1664283437375" duration="6323000" />
     </task>
     <task id="LOCAL-00001" summary="commit mybatis-step-01">
       <created>1662821829862</created>
@@ -176,7 +203,63 @@
       <option name="project" value="LOCAL" />
       <updated>1663722569232</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="commit mybatis-step-06 SQL执行器的定义和实现">
+      <created>1663776558877</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1663776558877</updated>
+    </task>
+    <task id="LOCAL-00008" summary="commit mybatis-step-07 反射器提交">
+      <created>1664078251393</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1664078251393</updated>
+    </task>
+    <task id="LOCAL-00009" summary="commit mybatis-step-07 反射器提交">
+      <created>1664078502108</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1664078502108</updated>
+    </task>
+    <task id="LOCAL-00010" summary="commit mybatis-step-07 反射器提交">
+      <created>1664078659249</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1664078659249</updated>
+    </task>
+    <task id="LOCAL-00011" summary="commit mybatis-step-07 反射器提交">
+      <created>1664078777791</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1664078777791</updated>
+    </task>
+    <task id="LOCAL-00012" summary="commit mybatis-step-07 反射器提交">
+      <created>1664078789949</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1664078789949</updated>
+    </task>
+    <task id="LOCAL-00013" summary="commit mybatis-step-07 反射器提交">
+      <created>1664078883071</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1664078883071</updated>
+    </task>
+    <task id="LOCAL-00014" summary="squash! commit mybatis-step-07 反射器提交">
+      <created>1664080941414</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1664080941414</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +281,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="mybatis-step-07" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -208,6 +303,16 @@
         <entry key="Branch">
           <value>
             <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="mybatis-step-07" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="mybatis-step-06" />
+                </option>
+              </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="mybatis-step-03" />
@@ -256,47 +361,30 @@
     <MESSAGE value="commit mybatis-step-02 apiTest" />
     <MESSAGE value="commit mybatis-step-04-t" />
     <MESSAGE value="commit mybatis-step-05 连接池化" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit mybatis-step-05 连接池化" />
+    <MESSAGE value="commit mybatis-step-06 SQL执行器的定义和实现" />
+    <MESSAGE value="commit mybatis-step-07 反射器提交1" />
+    <MESSAGE value="commit mybatis-step-07 反射器提交" />
+    <MESSAGE value="commit mybatis-step-07 反射器提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit mybatis-step-07 反射器提交" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/SimpleExecutor.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/BaseStatementHandler.java</url>
           <line>47</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/PreparedStatementHandler.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/PreparedStatementHandler.java</url>
-          <line>41</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/datasource/unpooled/UnpooledDataSourceFactory.java</url>
+          <line>27</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
