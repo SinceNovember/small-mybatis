@@ -4,40 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="07 test7-8">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/ParameterExpression.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/SqlSourceBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/StaticSqlSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLMapperBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLStatementBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/SqlSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/parsing/GenericTokenParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/parsing/TokenHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/LanguageDriver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/LanguageDriverRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/defaults/RawSqlSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/DynamicContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/MixedSqlNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/SqlNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/StaticTextSqlNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/XMLLanguageDriver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/XMLScriptBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/TypeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/TypeHandlerRegistry.java" afterDir="false" />
+    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="step-08 细化XML语句构建器，完善静态SQL解析">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/parameter/ParameterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/defaults/DefaultParameterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/BaseTypeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/LongTypeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/StringTypeHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/BaseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/BaseBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLConfigBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLConfigBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/io/Resources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/io/Resources.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/BoundSql.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/BoundSql.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/SqlSourceBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/SqlSourceBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/BaseStatementHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/BaseStatementHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/PreparedStatementHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/PreparedStatementHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/MappedStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/MappedStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/ParameterMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/ParameterMapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/LanguageDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/LanguageDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/XMLLanguageDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/XMLLanguageDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/TypeAliasRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/TypeAliasRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ReflectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ReflectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/JdbcType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/JdbcType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/TypeHandlerRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/TypeHandlerRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/IUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/po/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/po/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/mapper/User_Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/mapper/User_Mapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,15 +38,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="mybatis-step-07" />
+        <entry key="$PROJECT_DIR$" value="mybatis-step-08" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -121,7 +111,7 @@
       <recent name="com.simple.mybatis.test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionTest.test_SqlSessionFactory">
+  <component name="RunManager" selected="JUnit.ApiTest.test_queryUserInfo">
     <configuration name="ApiTest.test_MapperProxyFactory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="small-mybatis" />
       <extension name="coverage">
@@ -133,6 +123,38 @@
       <option name="PACKAGE_NAME" value="com.simple.mybatis.test" />
       <option name="MAIN_CLASS_NAME" value="com.simple.mybatis.test.ApiTest" />
       <option name="METHOD_NAME" value="test_MapperProxyFactory" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiTest.test_queryUserInfo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="small-mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.simple.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.simple.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.simple.mybatis.test.ApiTest" />
+      <option name="METHOD_NAME" value="test_queryUserInfo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiTest.test_queryUserInfoById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="small-mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.simple.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.simple.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.simple.mybatis.test.ApiTest" />
+      <option name="METHOD_NAME" value="test_queryUserInfoById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -172,6 +194,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ApiTest.test_queryUserInfo" />
+        <item itemvalue="JUnit.ApiTest.test_queryUserInfoById" />
         <item itemvalue="JUnit.ReflectionTest.test_SqlSessionFactory" />
         <item itemvalue="JUnit.ApiTest.test_MapperProxyFactory" />
         <item itemvalue="JUnit.ReflectionTest.test_reflection" />
@@ -198,7 +222,10 @@
       <workItem from="1664283437375" duration="7835000" />
       <workItem from="1664367212525" duration="8998000" />
       <workItem from="1664500614328" duration="3611000" />
-      <workItem from="1664951070113" duration="21710000" />
+      <workItem from="1664951070113" duration="25027000" />
+      <workItem from="1665218972965" duration="473000" />
+      <workItem from="1665234739682" duration="5438000" />
+      <workItem from="1665318813871" duration="4364000" />
     </task>
     <task id="LOCAL-00001" summary="commit mybatis-step-01">
       <created>1662821829862</created>
@@ -305,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664290630483</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="step-08 细化XML语句构建器，完善静态SQL解析">
+      <created>1665066281939</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1665066281939</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,7 +372,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="mybatis-step-07" />
+                        <option value="mybatis-step-08" />
                       </list>
                     </value>
                   </entry>
@@ -416,33 +450,24 @@
     <MESSAGE value="commit mybatis-step-07 反射器提交1" />
     <MESSAGE value="commit mybatis-step-07 反射器提交" />
     <MESSAGE value="commit mybatis-step-07 把反射用到出神入化" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit mybatis-step-07 把反射用到出神入化" />
+    <MESSAGE value="step-08 细化XML语句构建器，完善静态SQL解析" />
+    <option name="LAST_COMMIT_MESSAGE" value="step-08 细化XML语句构建器，完善静态SQL解析" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java</url>
           <line>32</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLStatementBuilder.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((JDBC42ResultSet)resultSet).firstCharOfQuery" custom="com.mysql.jdbc.JDBC42ResultSet" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

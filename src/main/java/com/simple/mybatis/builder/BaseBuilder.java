@@ -2,6 +2,7 @@ package com.simple.mybatis.builder;
 
 import com.simple.mybatis.session.Configuration;
 import com.simple.mybatis.type.TypeAliasRegistry;
+import com.simple.mybatis.type.TypeHandlerRegistry;
 
 /**
  * @author SinceNovember
@@ -14,10 +15,12 @@ public class BaseBuilder {
     protected final Configuration configuration;
     protected final TypeAliasRegistry typeAliasRegistry;
 
+    protected final TypeHandlerRegistry typeHandlerRegistry;
+
     public BaseBuilder(Configuration configuration) {
         this.configuration = configuration;
         this.typeAliasRegistry = this.configuration.getTypeAliasRegistry();
-
+        this.typeHandlerRegistry = this.configuration.getTypeHandlerRegistry();
     }
 
     public Configuration getConfiguration() {
