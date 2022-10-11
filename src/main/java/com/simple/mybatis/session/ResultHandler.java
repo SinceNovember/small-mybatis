@@ -5,5 +5,5 @@ package com.simple.mybatis.session;
  */
 public interface ResultHandler {
 
-    void handleResult();
+    void handleResult(ResultContext context);
 }

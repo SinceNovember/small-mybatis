@@ -3,6 +3,7 @@ package com.simple.mybatis.mapping;
 import com.simple.mybatis.scripting.LanguageDriver;
 import com.simple.mybatis.session.Configuration;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,6 +20,9 @@ public class MappedStatement {
     private SqlSource sqlSource;
     Class<?> resultType;
     private LanguageDriver lang;
+
+    private List<ResultMap> resultMaps;
+
 
     MappedStatement() {
         // constructor disabled
@@ -46,6 +50,15 @@ public class MappedStatement {
             return mappedStatement;
         }
 
+        public String id() {
+            return mappedStatement.id;
+        }
+
+        public Builder resultMaps(List<ResultMap> resultMaps) {
+            mappedStatement.resultMaps = resultMaps;
+            return this;
+        }
+
     }
 
     public Configuration getConfiguration() {
@@ -70,5 +83,9 @@ public class MappedStatement {
 
     public LanguageDriver getLang() {
         return lang;
+    }
+
+    public List<ResultMap> getResultMaps() {
+        return resultMaps;
     }
 }
