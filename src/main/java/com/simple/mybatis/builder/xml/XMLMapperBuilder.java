@@ -26,7 +26,6 @@ public class XMLMapperBuilder extends BaseBuilder {
     private String resource;
 
 
-
     public XMLMapperBuilder(InputStream inputStream, Configuration configuration, String resource) throws DocumentException {
         this(new SAXReader().read(inputStream), configuration, resource);
     }
@@ -41,7 +40,7 @@ public class XMLMapperBuilder extends BaseBuilder {
     /**
      * 解析
      */
-    public void parse() throws Exception  {
+    public void parse() throws Exception {
         // 如果当前资源没有加载过再加载，防止重复加载
         if (!configuration.isResourceLoaded(resource)) {
             configurationElement(element);
@@ -67,18 +66,22 @@ public class XMLMapperBuilder extends BaseBuilder {
         builderAssistant.setCurrentNamespace(namespace);
 
         // 2.配置select|insert|update|delete
-        buildStatementFromContext(element.elements("select"));
+        buildStatementFromContext(element.elements("select"),
+                element.elements("insert"),
+                element.elements("update"),
+                element.elements("delete"));
     }
 
     /**
      * 配置select|insert|update|delete
      *
-     * @param list 选择
      */
-    private void buildStatementFromContext(List<Element> list) {
-        for (Element element : list) {
-            final XMLStatementBuilder statementBuilder = new XMLStatementBuilder(configuration, builderAssistant, element);
-            statementBuilder.parseStatementNode();
+    private void buildStatementFromContext(List<Element>... lists) {
+        for (List<Element> list : lists) {
+            for (Element element : list) {
+                final XMLStatementBuilder statementBuilder = new XMLStatementBuilder(configuration, builderAssistant, element);
+                statementBuilder.parseStatementNode();
+            }
         }
     }
 }
