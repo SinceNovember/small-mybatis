@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -50,7 +51,7 @@ public class DefaultParameterHandler implements ParameterHandler {
     @Override
     public void setParameters(PreparedStatement ps) throws SQLException {
         List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
-        if (null != parameterMappings) {
+        if (!parameterMappings.isEmpty()) {
             for (int i = 0; i < parameterMappings.size(); i++) {
                 ParameterMapping parameterMapping = parameterMappings.get(i);
                 String propertyName = parameterMapping.getProperty();
