@@ -30,5 +30,17 @@ public class BaseBuilder {
     protected Class<?> resolveAlias(String alias) {
         return typeAliasRegistry.resolveAlias(alias);
     }
+
+    // 根据别名解析 Class 类型别名注册/事务管理器别名
+    protected Class<?> resolveClass(String alias) {
+        if (alias == null) {
+            return null;
+        }
+        try {
+            return resolveAlias(alias);
+        } catch (Exception e) {
+            throw new RuntimeException("Error resolving class. Cause: " + e, e);
+        }
+    }
 }
 

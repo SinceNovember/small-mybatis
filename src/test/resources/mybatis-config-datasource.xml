@@ -15,8 +15,8 @@
     </environments>
 
     <mappers>
-<!--        <mapper resource="mapper/User_Mapper.xml"/>-->
-        <mapper class="com.simple.mybatis.test.dao.IUserDao"/>
+        <!-- XML 配置 -->
+        <mapper resource="mapper/Activity_Mapper.xml"/>
     </mappers>
 
 </configuration>

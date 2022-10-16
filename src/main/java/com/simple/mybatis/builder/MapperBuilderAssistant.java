@@ -1,8 +1,10 @@
 package com.simple.mybatis.builder;
 
 import com.simple.mybatis.mapping.*;
+import com.simple.mybatis.reflection.MetaClass;
 import com.simple.mybatis.scripting.LanguageDriver;
 import com.simple.mybatis.session.Configuration;
+import com.simple.mybatis.type.TypeHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +24,40 @@ public class MapperBuilderAssistant extends BaseBuilder {
     public MapperBuilderAssistant(Configuration configuration, String resource) {
         super(configuration);
         this.resource = resource;
+    }
+
+    public ResultMapping buildResultMapping(Class<?> resultType,
+                                            String property,
+                                            String column,
+                                            List<ResultFlag> flags) {
+        Class<?> javaTypeClass = resolveResultJavaType(resultType, property, null);
+        TypeHandler<?> typeHandlerInstance = resolveTypeHandler(javaTypeClass, null);
+
+        ResultMapping.Builder builder = new ResultMapping.Builder(configuration, property, column, javaTypeClass);
+        builder.typeHandler(typeHandlerInstance);
+        builder.flags(flags);
+        return builder.build();
+
+    }
+
+    protected TypeHandler<?> resolveTypeHandler(Class<?> javaType, Class<? extends TypeHandler<?>> typeHandlerType) {
+        if (typeHandlerType == null){
+            return null;
+        }
+        return typeHandlerRegistry.getMappingTypeHandler(typeHandlerType);
+    }
+    private Class<?> resolveResultJavaType(Class<?> resultType, String property, Class<?> javaType) {
+        try {
+            if (javaType == null && property != null) {
+                MetaClass metaResultType = MetaClass.forClass(resultType);
+                javaType = metaResultType.getSetterType(property);
+            }
+        } catch (Exception e) {
+        }
+        if (javaType == null) {
+            javaType = Object.class;
+        }
+        return javaType;
     }
 
     public String getCurrentNamespace() {
@@ -95,6 +131,9 @@ public class MapperBuilderAssistant extends BaseBuilder {
     }
 
     public ResultMap addResultMap(String id, Class<?> type, List<ResultMapping> resultMappings) {
+        // 补全ID全路径，如：cn.bugstack.mybatis.test.dao.IActivityDao + activityMap
+
+        id = applyCurrentNamespace(id, false);
         ResultMap.Builder inlineResultMapBuilder = new ResultMap.Builder(
                 configuration,
                 id,

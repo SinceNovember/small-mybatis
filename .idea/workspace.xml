@@ -4,21 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="step-11 test-1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/annotations/Delete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/annotations/Insert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/annotations/Select.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/annotations/Update.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/annotation/MapperAnnotationBuilder.java" afterDir="false" />
+    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="step-12 通过注解配置执行SQL语句">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/ResultMapResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/ResultFlag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/DateTypeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/IActivityDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/po/Activity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/mapper/Activity_Mapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/binding/MapperRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/BaseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/BaseBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/MapperBuilderAssistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/MapperBuilderAssistant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLConfigBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLConfigBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/LanguageDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/LanguageDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/defaults/DefaultParameterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/defaults/DefaultParameterHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/XMLLanguageDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/xmltags/XMLLanguageDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/dao/IUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLMapperBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLMapperBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/ResultMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/ResultMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/ResultMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/ResultMapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/TypeHandlerRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/type/TypeHandlerRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/mapper/User_Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/mapper/User_Mapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/mybatis-config-datasource.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/mybatis-config-datasource.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,9 +32,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="AnnotationType" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -80,7 +82,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/IdeaProjects/small-mybatis-master/mybatis-step-08",
+    "last_opened_file_path": "D:/IdeaProjects/small-mybatis/src/test/resources/mapper",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -99,13 +101,14 @@
       <recent name="com.simple.mybatis.executor.resultset" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\small-mybatis\src\test\resources\mapper" />
       <recent name="D:\IdeaProjects\small-mybatis\src\test\java" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.simple.mybatis.test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ApiTest.test_queryUserInfoList">
+  <component name="RunManager" selected="JUnit.ApiTest.test_queryActivityById">
     <configuration name="ApiTest.test_deleteUserInfoByUserId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="small-mybatis" />
       <extension name="coverage">
@@ -133,6 +136,22 @@
       <option name="PACKAGE_NAME" value="com.simple.mybatis.test" />
       <option name="MAIN_CLASS_NAME" value="com.simple.mybatis.test.ApiTest" />
       <option name="METHOD_NAME" value="test_insertUserInfo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiTest.test_queryActivityById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="small-mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.simple.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.simple.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.simple.mybatis.test.ApiTest" />
+      <option name="METHOD_NAME" value="test_queryActivityById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,29 +189,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApiTest.test_updateUserInfo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="small-mybatis" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.simple.mybatis.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.simple.mybatis.test" />
-      <option name="MAIN_CLASS_NAME" value="com.simple.mybatis.test.ApiTest" />
-      <option name="METHOD_NAME" value="test_updateUserInfo" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ApiTest.test_queryActivityById" />
         <item itemvalue="JUnit.ApiTest.test_queryUserInfoList" />
         <item itemvalue="JUnit.ApiTest.test_insertUserInfo" />
         <item itemvalue="JUnit.ApiTest.test_queryUserInfoById" />
         <item itemvalue="JUnit.ApiTest.test_deleteUserInfoByUserId" />
-        <item itemvalue="JUnit.ApiTest.test_updateUserInfo" />
       </list>
     </recent_temporary>
   </component>
@@ -397,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665565071163</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="step-12 通过注解配置执行SQL语句">
+      <created>1665651152202</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1665651152202</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,45 +509,36 @@
     <MESSAGE value="step-08 细化XML语句构建器，完善静态SQL解析" />
     <MESSAGE value="step-09 使用策略模式，调用参数处理器" />
     <MESSAGE value="step-11 test-1" />
-    <option name="LAST_COMMIT_MESSAGE" value="step-11 test-1" />
+    <MESSAGE value="step-12 通过注解配置执行SQL语句" />
+    <option name="LAST_COMMIT_MESSAGE" value="step-12 通过注解配置执行SQL语句" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/SimpleExecutor.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="40" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/annotation/MapperAnnotationBuilder.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="52" />
+          <line>89</line>
+          <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="54" />
+          <line>56</line>
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/ResultSetWrapper.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="55" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/resultset/DefaultResultSetHandler.java</url>
+          <line>119</line>
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/SimpleExecutor.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/PreparedStatementHandler.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/scripting/defaults/DefaultParameterHandler.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="58" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/MapperBuilderAssistant.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="76" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
