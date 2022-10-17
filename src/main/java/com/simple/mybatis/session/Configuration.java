@@ -6,6 +6,7 @@ import com.simple.mybatis.datasource.pooled.PooledDataSourceFactory;
 import com.simple.mybatis.datasource.unpooled.UnpooledDataSourceFactory;
 import com.simple.mybatis.executor.Executor;
 import com.simple.mybatis.executor.SimpleExecutor;
+import com.simple.mybatis.executor.keygen.KeyGenerator;
 import com.simple.mybatis.executor.parameter.ParameterHandler;
 import com.simple.mybatis.executor.resultset.DefaultResultSetHandler;
 import com.simple.mybatis.executor.resultset.ResultSetHandler;
@@ -43,6 +44,7 @@ public class Configuration {
 
     //环境
     protected Environment environment;
+    protected boolean useGeneratedKeys = false;
 
     // 映射注册机
     protected MapperRegistry mapperRegistry = new MapperRegistry(this);
@@ -52,6 +54,8 @@ public class Configuration {
 
     // 结果映射，存在Map里
     protected final Map<String, ResultMap> resultMaps = new HashMap<>();
+    protected final Map<String, KeyGenerator> keyGenerators = new HashMap<>();
+
 
     // 类型别名注册机
     protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
@@ -185,5 +189,24 @@ public class Configuration {
 
     public void addResultMap(ResultMap resultMap) {
         resultMaps.put(resultMap.getId(), resultMap);
+    }
+    public void addKeyGenerator(String id, KeyGenerator keyGenerator) {
+        keyGenerators.put(id, keyGenerator);
+    }
+
+    public KeyGenerator getKeyGenerator(String id) {
+        return keyGenerators.get(id);
+    }
+
+    public boolean hasKeyGenerator(String id) {
+        return keyGenerators.containsKey(id);
+    }
+
+    public boolean isUseGeneratedKeys() {
+        return useGeneratedKeys;
+    }
+
+    public void setUseGeneratedKeys(boolean useGeneratedKeys) {
+        this.useGeneratedKeys = useGeneratedKeys;
     }
 }

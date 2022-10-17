@@ -2,6 +2,10 @@ package com.simple.mybatis.builder.xml;
 
 import com.simple.mybatis.builder.BaseBuilder;
 import com.simple.mybatis.builder.MapperBuilderAssistant;
+import com.simple.mybatis.executor.keygen.Jdbc3KeyGenerator;
+import com.simple.mybatis.executor.keygen.KeyGenerator;
+import com.simple.mybatis.executor.keygen.NoKeyGenerator;
+import com.simple.mybatis.executor.keygen.SelectKeyGenerator;
 import com.simple.mybatis.mapping.MappedStatement;
 import com.simple.mybatis.mapping.SqlCommandType;
 import com.simple.mybatis.mapping.SqlSource;
@@ -9,6 +13,7 @@ import com.simple.mybatis.scripting.LanguageDriver;
 import com.simple.mybatis.session.Configuration;
 import org.dom4j.Element;
 
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -61,8 +66,24 @@ public class XMLStatementBuilder extends BaseBuilder {
         Class<?> langClass = configuration.getLanguageRegistry().getDefaultDriverClass();
         LanguageDriver langDriver = configuration.getLanguageRegistry().getDriver(langClass);
 
+        // 解析<selectKey> step-14 新增
+        processSelectKeyNodes(id, parameterTypeClass, langDriver);
+
         // 解析成SqlSource，DynamicSqlSource/RawSqlSource
         SqlSource sqlSource = langDriver.createSqlSource(configuration, element, parameterTypeClass);
+
+        // 属性标记【仅对 insert 有用】, MyBatis 会通过 getGeneratedKeys 或者通过 insert 语句的 selectKey 子元素设置它的值 step-14 新增
+        String keyProperty = element.attributeValue("keyProperty");
+
+        KeyGenerator keyGenerator = null;
+        String keyStatementId = id + SelectKeyGenerator.SELECT_KEY_SUFFIX;
+        keyStatementId = builderAssistant.applyCurrentNamespace(keyStatementId, true);
+
+        if (configuration.hasKeyGenerator(keyStatementId)) {
+            keyGenerator = configuration.getKeyGenerator(keyStatementId);
+        } else {
+            keyGenerator = configuration.isUseGeneratedKeys() && SqlCommandType.INSERT.equals(sqlCommandType) ? new Jdbc3KeyGenerator() : new NoKeyGenerator();
+        }
 
         // 调用助手类【本节新添加，便于统一处理参数的包装】
         builderAssistant.addMappedStatement(id,
@@ -71,7 +92,56 @@ public class XMLStatementBuilder extends BaseBuilder {
                 parameterTypeClass,
                 resultMap,
                 resultTypeClass,
+                keyGenerator,
+                keyProperty,
+                langDriver);
+    }
+
+    private void processSelectKeyNodes(String id, Class<?> parameterTypeClass, LanguageDriver langDriver) {
+        List<Element> selectKeyNodes = element.elements("selectKey");
+        parseSelectKeyNodes(id, selectKeyNodes, parameterTypeClass, langDriver);
+    }
+
+    private void parseSelectKeyNodes(String parentId, List<Element> list, Class<?> parameterTypeClass, LanguageDriver languageDriver) {
+        for (Element nodeToHandle : list) {
+            String id = parentId + SelectKeyGenerator.SELECT_KEY_SUFFIX;
+            parseSelectKeyNode(id, nodeToHandle, parameterTypeClass, languageDriver);
+        }
+    }
+
+    /**
+     * <selectKey keyProperty="id" order="AFTER" resultType="long">
+     * SELECT LAST_INSERT_ID()
+     * </selectKey>
+     */
+    private void parseSelectKeyNode(String id, Element nodeToHandle, Class<?> parameterTypeClass, LanguageDriver langDriver) {
+        String resultType = nodeToHandle.attributeValue("resultType");
+        Class<?> resultTypeClass = resolveClass(resultType);
+        boolean executeBefore = "BEFORE".equals(nodeToHandle.attributeValue("order", "AFTER"));
+        String keyProperty = nodeToHandle.attributeValue("keyProperty");
+
+        String resultMap = null;
+        KeyGenerator keyGenerator = new NoKeyGenerator();
+
+        // 解析成SqlSource，DynamicSqlSource/RawSqlSource
+        SqlSource sqlSource = langDriver.createSqlSource(configuration, nodeToHandle, parameterTypeClass);
+        SqlCommandType sqlCommandType = SqlCommandType.SELECT;
+
+        // 调用助手类
+        builderAssistant.addMappedStatement(id,
+                sqlSource,
+                sqlCommandType,
+                parameterTypeClass,
+                resultMap,
+                resultTypeClass,
+                keyGenerator,
+                keyProperty,
                 langDriver);
 
+        // 给id加上namespace前缀
+        id = builderAssistant.applyCurrentNamespace(id, false);
+
+        MappedStatement keyStatement = configuration.getMappedStatement(id);
+        configuration.addKeyGenerator(id, new SelectKeyGenerator(keyStatement, executeBefore));
     }
 }

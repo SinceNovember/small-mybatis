@@ -65,6 +65,7 @@ public class DefaultSqlSession implements SqlSession {
         }
     }
 
+
     @Override
     public int insert(String statement, Object parameter) {
         // 在 Mybatis 中 insert 调用的是 update

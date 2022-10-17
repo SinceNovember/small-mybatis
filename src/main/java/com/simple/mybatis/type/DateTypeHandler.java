@@ -28,4 +28,13 @@ public class DateTypeHandler extends BaseTypeHandler<Date> {
     protected void setNonNullParameter(PreparedStatement ps, int i, Date parameter, JdbcType jdbcType) throws SQLException {
         ps.setTimestamp(i, new Timestamp((parameter).getTime()));
     }
+
+    @Override
+    public Date getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
+        Timestamp sqlTimestamp = rs.getTimestamp(columnIndex);
+        if (sqlTimestamp != null) {
+            return new Date(sqlTimestamp.getTime());
+        }
+        return null;
+    }
 }

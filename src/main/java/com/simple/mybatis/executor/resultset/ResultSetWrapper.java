@@ -36,7 +36,7 @@ public class ResultSetWrapper {
         this.resultSet = rs;
         final ResultSetMetaData metaData = rs.getMetaData();
         final int columnCount = metaData.getColumnCount();
-        for (int i = 1; i < columnCount; i++) {
+        for (int i = 1; i <= columnCount; i++) {
             columnNames.add(metaData.getColumnLabel(i));
             jdbcTypes.add(JdbcType.forCode(metaData.getColumnType(i)));
             classNames.add(metaData.getColumnClassName(i));
