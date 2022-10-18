@@ -9,6 +9,7 @@ import com.simple.mybatis.mapping.MappedStatement;
 import com.simple.mybatis.mapping.SqlCommandType;
 import com.simple.mybatis.plugin.Interceptor;
 import com.simple.mybatis.session.Configuration;
+import com.simple.mybatis.session.LocalCacheScope;
 import com.simple.mybatis.transaction.TransactionFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -91,6 +92,24 @@ public class XMLConfigBuilder extends BaseBuilder {
             interceptorInstance.setProperties(properties);
             configuration.addInterceptor(interceptorInstance);
         }
+    }
+
+    /**
+     * <settings>
+     *     <!--缓存级别：SESSION/STATEMENT-->
+     *     <setting name="localCacheScope" value="SESSION"/>
+     * </settings>
+     */
+    private void settingsElement(Element context) {
+        if (context == null) {
+            return;
+        }
+        List<Element> elements = context.elements();
+        Properties properties = new Properties();
+        for (Element element : elements) {
+            properties.setProperty(element.attributeValue("name"), element.attributeValue("value"));
+        }
+        configuration.setLocalCacheScope(LocalCacheScope.valueOf(properties.getProperty("localCacheScope")));
     }
 
         /**

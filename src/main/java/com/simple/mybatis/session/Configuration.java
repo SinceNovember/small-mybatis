@@ -48,6 +48,8 @@ public class Configuration {
     protected Environment environment;
     protected boolean useGeneratedKeys = false;
 
+    protected LocalCacheScope localCacheScope = LocalCacheScope.SESSION;
+
     // 映射注册机
     protected MapperRegistry mapperRegistry = new MapperRegistry(this);
 
@@ -220,4 +222,13 @@ public class Configuration {
     public void addInterceptor(Interceptor interceptorInstance) {
         interceptorChain.addInterceptor(interceptorInstance);
     }
+
+    public LocalCacheScope getLocalCacheScope() {
+        return localCacheScope;
+    }
+
+    public void setLocalCacheScope(LocalCacheScope localCacheScope) {
+        this.localCacheScope = localCacheScope;
+    }
+
 }

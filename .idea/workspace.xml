@@ -4,19 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="step-15 解析含标签的动态SQL语句">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/plugin/Interceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/plugin/InterceptorChain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/plugin/Intercepts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/plugin/Invocation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/plugin/Plugin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/plugin/Signature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/plugin/TestPlugin.java" afterDir="false" />
+    <list default="true" id="e465a145-c891-4ea7-ad7b-4ae72f01ae9a" name="Changes" comment="step-16 Plugin插件功能的实现">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/cache/Cache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/cache/CacheKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/cache/NullCacheKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/cache/impl/PerpetualCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/ExecutionPlaceholder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/LocalCacheScope.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLConfigBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/builder/xml/XMLConfigBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/BaseStatementHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/BaseStatementHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/StatementHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/statement/StatementHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/BaseExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/BaseExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/Executor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/MappedStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/mapping/MappedStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/mybatis/session/defaults/DefaultSqlSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simple/mybatis/test/ApiTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/mybatis-config-datasource.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/mybatis-config-datasource.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,17 +29,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="AnnotationType" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="mybatis-step-15" />
+        <entry key="$PROJECT_DIR$" value="mybatis-step-16" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -425,7 +427,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666074176060</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="step-16 Plugin插件功能的实现">
+      <created>1666081936655</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1666081936655</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,14 +540,15 @@
     <MESSAGE value="step-13 解析和使用ResultMap映射参数配置" />
     <MESSAGE value="step-14 返回Insert操作自增索引值" />
     <MESSAGE value="step-15 解析含标签的动态SQL语句" />
-    <option name="LAST_COMMIT_MESSAGE" value="step-15 解析含标签的动态SQL语句" />
+    <MESSAGE value="step-16 Plugin插件功能的实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="step-16 Plugin插件功能的实现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/simple/mybatis/executor/BaseExecutor.java</url>
-          <line>48</line>
+          <line>68</line>
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint type="java-line">

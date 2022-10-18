@@ -1,11 +1,17 @@
 package com.simple.mybatis.executor;
 
+import com.simple.mybatis.cache.CacheKey;
+import com.simple.mybatis.cache.impl.PerpetualCache;
 import com.simple.mybatis.mapping.BoundSql;
 import com.simple.mybatis.mapping.MappedStatement;
+import com.simple.mybatis.mapping.ParameterMapping;
+import com.simple.mybatis.reflection.MetaObject;
 import com.simple.mybatis.session.Configuration;
+import com.simple.mybatis.session.LocalCacheScope;
 import com.simple.mybatis.session.ResultHandler;
 import com.simple.mybatis.session.RowBounds;
 import com.simple.mybatis.transaction.Transaction;
+import com.simple.mybatis.type.TypeHandlerRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +26,7 @@ import java.util.List;
  * @date 2022/9/21
  */
 
-public abstract class BaseExecutor implements Executor{
+public abstract class BaseExecutor implements Executor {
 
     private Logger logger = LoggerFactory.getLogger(BaseExecutor.class);
 
@@ -28,33 +34,78 @@ public abstract class BaseExecutor implements Executor{
     protected Transaction transaction;
     protected Executor wrapper;
 
+    // 本地缓存
+    protected PerpetualCache localCache;
+
     private boolean closed;
+
+    protected int queryStack = 0;
+
 
     protected BaseExecutor(Configuration configuration, Transaction transaction) {
         this.configuration = configuration;
         this.transaction = transaction;
         this.wrapper = this;
+        this.localCache = new PerpetualCache("LocalCache");
     }
 
     @Override
     public int update(MappedStatement ms, Object parameter) throws SQLException {
-        return doUpdate(ms, parameter);
-    }
-
-    protected abstract int doUpdate(MappedStatement ms, Object parameter) throws SQLException ;
-
-    @Override
-    public <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException {
-        BoundSql boundSql = ms.getBoundSql(parameter);
-        return query(ms, parameter, rowBounds, resultHandler, boundSql);
-    }
-
-    @Override
-    public <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) throws SQLException {
         if (closed) {
             throw new RuntimeException("Executor was closed.");
         }
-        return doQuery(ms, parameter, rowBounds, resultHandler, boundSql);
+        clearLocalCache();
+        return doUpdate(ms, parameter);
+    }
+
+    protected abstract int doUpdate(MappedStatement ms, Object parameter) throws SQLException;
+
+    @Override
+    public <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException {
+        // 1. 获取绑定SQL
+        BoundSql boundSql = ms.getBoundSql(parameter);
+        // 2. 创建缓存key
+        CacheKey key = createCacheKey(ms, parameter, rowBounds, boundSql);
+        return query(ms, parameter, rowBounds, resultHandler, key, boundSql);
+    }
+
+    @Override
+    public <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql) throws SQLException {
+        if (closed) {
+            throw new RuntimeException("Executor was closed.");
+        }
+        if (queryStack == 0 && ms.isFlushCacheRequired()) {
+            clearLocalCache();
+        }
+        List<E> list;
+        try {
+            queryStack++;
+            list = resultHandler == null ? (List<E>) localCache.getObject(key) : null;
+            if (list == null) {
+                list = queryFromDatabase(ms, parameter, rowBounds, resultHandler, key, boundSql);
+            }
+        } finally {
+            queryStack--;
+        }
+        if (queryStack == 0) {
+            if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
+                clearLocalCache();
+            }
+        }
+        return list;
+    }
+
+    private <E> List<E> queryFromDatabase(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql) {
+        List<E> list;
+        localCache.putObject(key, ExecutionPlaceholder.EXECUTION_PLACEHOLDER);
+        try {
+            list = doQuery(ms, parameter, rowBounds, resultHandler, boundSql);
+        } finally {
+            localCache.removeObject(key);
+        }
+        localCache.putObject(key, list);
+        return list;
+
     }
 
     protected abstract <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql);
@@ -72,6 +123,7 @@ public abstract class BaseExecutor implements Executor{
         if (closed) {
             throw new RuntimeException("Cannot commit, transaction is already closed");
         }
+        clearLocalCache();
         if (required) {
             transaction.commit();
         }
@@ -80,6 +132,7 @@ public abstract class BaseExecutor implements Executor{
     @Override
     public void rollback(boolean required) throws SQLException {
         if (!closed) {
+            clearLocalCache();
             if (required) {
                 transaction.rollback();
             }
@@ -102,6 +155,39 @@ public abstract class BaseExecutor implements Executor{
         }
     }
 
+    @Override
+    public CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowBounds rowBounds, BoundSql boundSql) {
+        if (closed) {
+            throw new RuntimeException("Executor was closed.");
+        }
+        CacheKey cacheKey = new CacheKey();
+        cacheKey.update(ms.getId());
+        cacheKey.update(rowBounds.getOffset());
+        cacheKey.update(rowBounds.getLimit());
+        cacheKey.update(boundSql.getSql());
+        List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
+        TypeHandlerRegistry typeHandlerRegistry = ms.getConfiguration().getTypeHandlerRegistry();
+        for (ParameterMapping parameterMapping : parameterMappings) {
+            Object value;
+            String propertyName = parameterMapping.getProperty();
+            if (boundSql.hasAdditionalParameter(propertyName)) {
+                value = boundSql.getAdditionalParameter(propertyName);
+            } else if (parameterObject == null) {
+                value = null;
+            } else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
+                value = parameterObject;
+            } else {
+                MetaObject metaObject = configuration.newMetaObject(parameterObject);
+                value = metaObject.getValue(propertyName);
+            }
+            cacheKey.update(value);
+        }
+        if (configuration.getEnvironment() != null) {
+            cacheKey.update(configuration.getEnvironment().getId());
+        }
+        return cacheKey;
+    }
+
     protected void closeStatement(Statement statement) {
         if (statement != null) {
             try {
@@ -111,7 +197,10 @@ public abstract class BaseExecutor implements Executor{
         }
     }
 
-
-
-
+    @Override
+    public void clearLocalCache() {
+        if (!closed) {
+            localCache.clear();
+        }
+    }
 }

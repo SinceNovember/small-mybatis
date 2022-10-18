@@ -1,10 +1,7 @@
 package com.simple.mybatis.session.defaults;
 
 import com.alibaba.fastjson.JSON;
-import com.simple.mybatis.binding.MapperRegistry;
 import com.simple.mybatis.executor.Executor;
-import com.simple.mybatis.mapping.BoundSql;
-import com.simple.mybatis.mapping.Environment;
 import com.simple.mybatis.mapping.MappedStatement;
 import com.simple.mybatis.session.Configuration;
 import com.simple.mybatis.session.RowBounds;
@@ -12,11 +9,7 @@ import com.simple.mybatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.transform.Result;
-import java.lang.reflect.Method;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -59,7 +52,7 @@ public class DefaultSqlSession implements SqlSession {
         logger.info("执行查询 statement：{} parameter：{}", statement, JSON.toJSONString(parameter));
         MappedStatement ms = configuration.getMappedStatement(statement);
         try {
-            return executor.query(ms, parameter, RowBounds.DEFAULT, Executor.NO_RESULT_HANDLER, ms.getSqlSource().getBoundSql(parameter));
+            return executor.query(ms, parameter, RowBounds.DEFAULT, Executor.NO_RESULT_HANDLER);
         } catch (SQLException e) {
             throw new RuntimeException("Error querying database.  Cause: " + e);
         }
