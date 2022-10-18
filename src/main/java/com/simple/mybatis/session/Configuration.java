@@ -16,6 +16,8 @@ import com.simple.mybatis.mapping.BoundSql;
 import com.simple.mybatis.mapping.Environment;
 import com.simple.mybatis.mapping.MappedStatement;
 import com.simple.mybatis.mapping.ResultMap;
+import com.simple.mybatis.plugin.Interceptor;
+import com.simple.mybatis.plugin.InterceptorChain;
 import com.simple.mybatis.reflection.MetaObject;
 import com.simple.mybatis.reflection.factory.DefaultObjectFactory;
 import com.simple.mybatis.reflection.factory.ObjectFactory;
@@ -56,6 +58,7 @@ public class Configuration {
     protected final Map<String, ResultMap> resultMaps = new HashMap<>();
     protected final Map<String, KeyGenerator> keyGenerators = new HashMap<>();
 
+    protected final InterceptorChain interceptorChain = new InterceptorChain();
 
     // 类型别名注册机
     protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
@@ -143,7 +146,11 @@ public class Configuration {
      * 创建语句处理器
      */
     public StatementHandler newStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) {
-        return new PreparedStatementHandler(executor, mappedStatement, parameter, rowBounds, resultHandler, boundSql);
+        // 创建语句处理器，Mybatis 这里加了路由 STATEMENT、PREPARED、CALLABLE 我们默认只根据预处理进行实例化
+        StatementHandler statementHandler = new PreparedStatementHandler(executor, mappedStatement, parameter, rowBounds, resultHandler, boundSql);
+        // 嵌入插件，代理对象
+        statementHandler = (StatementHandler)interceptorChain.pluginAll(statementHandler);
+        return statementHandler;
     }
 
     // 创建元对象
@@ -208,5 +215,9 @@ public class Configuration {
 
     public void setUseGeneratedKeys(boolean useGeneratedKeys) {
         this.useGeneratedKeys = useGeneratedKeys;
+    }
+
+    public void addInterceptor(Interceptor interceptorInstance) {
+        interceptorChain.addInterceptor(interceptorInstance);
     }
 }
