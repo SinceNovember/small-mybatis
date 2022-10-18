@@ -1,5 +1,6 @@
 package com.simple.mybatis.mapping;
 
+import com.simple.mybatis.cache.Cache;
 import com.simple.mybatis.executor.keygen.Jdbc3KeyGenerator;
 import com.simple.mybatis.executor.keygen.KeyGenerator;
 import com.simple.mybatis.executor.keygen.NoKeyGenerator;
@@ -26,18 +27,21 @@ public class MappedStatement {
     Class<?> resultType;
     private LanguageDriver lang;
     private List<ResultMap> resultMaps;
-
     private boolean flushCacheRequired;
+    // step-14 新增
     private KeyGenerator keyGenerator;
     private String[] keyProperties;
     private String[] keyColumns;
-
-
+    private Cache cache;
+    private boolean useCache;
 
     MappedStatement() {
         // constructor disabled
     }
 
+    /**
+     * step-11 新增方法
+     */
     public BoundSql getBoundSql(Object parameterObject) {
         // 调用 SqlSource#getBoundSql
         return sqlSource.getBoundSql(parameterObject);
@@ -88,6 +92,21 @@ public class MappedStatement {
 
         public Builder keyProperty(String keyProperty) {
             mappedStatement.keyProperties = delimitedStringToArray(keyProperty);
+            return this;
+        }
+
+        public Builder cache(Cache cache) {
+            mappedStatement.cache = cache;
+            return this;
+        }
+
+        public Builder flushCacheRequired(boolean flushCacheRequired) {
+            mappedStatement.flushCacheRequired = flushCacheRequired;
+            return this;
+        }
+
+        public Builder useCache(boolean useCache) {
+            mappedStatement.useCache = useCache;
             return this;
         }
 
@@ -149,4 +168,11 @@ public class MappedStatement {
         return flushCacheRequired;
     }
 
+    public boolean isUseCache() {
+        return useCache;
+    }
+
+    public Cache getCache() {
+        return cache;
+    }
 }

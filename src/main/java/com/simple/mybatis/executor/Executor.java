@@ -38,4 +38,7 @@ public interface Executor {
     // 创建缓存 Key
     CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowBounds rowBounds, BoundSql boundSql);
 
+    void setExecutorWrapper(Executor executor);
+
+
 }

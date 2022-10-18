@@ -90,6 +90,17 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
+    public void close() {
+        // isCommitOrRollbackRequired(false)
+        executor.close(false);
+    }
+
+    @Override
+    public void clearCache() {
+        executor.clearLocalCache();
+    }
+
+    @Override
     public <T> T getMapper(Class<T> type) {
         return configuration.getMapper(type, this);
     }

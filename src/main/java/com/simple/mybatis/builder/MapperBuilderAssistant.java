@@ -1,5 +1,8 @@
 package com.simple.mybatis.builder;
 
+import com.simple.mybatis.cache.Cache;
+import com.simple.mybatis.cache.decorators.FifoCache;
+import com.simple.mybatis.cache.impl.PerpetualCache;
 import com.simple.mybatis.executor.keygen.KeyGenerator;
 import com.simple.mybatis.mapping.*;
 import com.simple.mybatis.reflection.MetaClass;
@@ -10,6 +13,7 @@ import com.simple.mybatis.type.TypeHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * 映射构建器助手，建造者
@@ -21,6 +25,8 @@ public class MapperBuilderAssistant extends BaseBuilder {
 
     private String currentNamespace;
     private String resource;
+    private Cache currentCache;
+
 
     public MapperBuilderAssistant(Configuration configuration, String resource) {
         super(configuration);
@@ -42,11 +48,12 @@ public class MapperBuilderAssistant extends BaseBuilder {
     }
 
     protected TypeHandler<?> resolveTypeHandler(Class<?> javaType, Class<? extends TypeHandler<?>> typeHandlerType) {
-        if (typeHandlerType == null){
+        if (typeHandlerType == null) {
             return null;
         }
         return typeHandlerRegistry.getMappingTypeHandler(typeHandlerType);
     }
+
     private Class<?> resolveResultJavaType(Class<?> resultType, String property, Class<?> javaType) {
         try {
             if (javaType == null && property != null) {
@@ -86,15 +93,25 @@ public class MapperBuilderAssistant extends BaseBuilder {
             }
         }
         return currentNamespace + "." + base;
-}
+    }
 
-    public MappedStatement addMappedStatement(String id, SqlSource sqlSource,
-                                              SqlCommandType sqlCommandType, Class<?> parameterType,
-                                              String resultMap, Class<?> resultType,
-                                              KeyGenerator keyGenerator, String keyProperty,
+    public MappedStatement addMappedStatement(String id,
+                                              SqlSource sqlSource,
+                                              SqlCommandType sqlCommandType,
+                                              Class<?> parameterType,
+                                              String resultMap,
+                                              Class<?> resultType,
+                                              boolean flushCache,
+                                              boolean useCache,
+                                              KeyGenerator keyGenerator,
+                                              String keyProperty,
                                               LanguageDriver lang) {
+
         // 给id加上namespace前缀：cn.bugstack.mybatis.test.dao.IUserDao.queryUserInfoById
         id = applyCurrentNamespace(id, false);
+        //是否是select语句
+        boolean isSelect = sqlCommandType == SqlCommandType.SELECT;
+
         MappedStatement.Builder statementBuilder = new MappedStatement.Builder(configuration, id, sqlCommandType, sqlSource, resultType);
         statementBuilder.resource(resource);
         statementBuilder.keyGenerator(keyGenerator);
@@ -102,12 +119,26 @@ public class MapperBuilderAssistant extends BaseBuilder {
 
         // 结果映射，给 MappedStatement#resultMaps
         setStatementResultMap(resultMap, resultType, statementBuilder);
+        setStatementCache(isSelect, flushCache, useCache, currentCache, statementBuilder);
 
         MappedStatement statement = statementBuilder.build();
         // 映射语句信息，建造完存放到配置项中
         configuration.addMappedStatement(statement);
         return statement;
     }
+
+    private void setStatementCache(boolean isSelect,
+                                   boolean flushCache,
+                                   boolean useCache,
+                                   Cache cache,
+                                   MappedStatement.Builder statementBuilder) {
+        flushCache = valueOrDefault(flushCache, !isSelect);
+        useCache = valueOrDefault(useCache, isSelect);
+        statementBuilder.flushCacheRequired(flushCache);
+        statementBuilder.useCache(useCache);
+        statementBuilder.cache(cache);
+    }
+
 
     private void setStatementResultMap(String resultMap, Class<?> resultType,
                                        MappedStatement.Builder statementBuilder) {
@@ -151,5 +182,38 @@ public class MapperBuilderAssistant extends BaseBuilder {
         return resultMap;
     }
 
+    public Cache useNewCache(Class<? extends Cache> typeClass,
+                             Class<? extends Cache> evictionClass,
+                             Long flushInterval,
+                             Integer size,
+                             boolean readWrite,
+                             boolean blocking,
+                             Properties props) {
+
+        // 判断为null，则用默认值
+        typeClass = valueOrDefault(typeClass, PerpetualCache.class);
+        evictionClass = valueOrDefault(evictionClass, FifoCache.class);
+
+        // 建造者模式构建 Cache [currentNamespace=cn.bugstack.mybatis.test.dao.IActivityDao]
+        Cache cache = new CacheBuilder(currentNamespace)
+                .implementation(typeClass)
+                .addDecorator(evictionClass)
+                .clearInterval(flushInterval)
+                .size(size)
+                .readWrite(readWrite)
+                .blocking(blocking)
+                .properties(props)
+                .build();
+
+        // 添加缓存
+        configuration.addCache(cache);
+        currentCache = cache;
+        return cache;
+
+    }
+
+    private <T> T valueOrDefault(T value, T defaultValue) {
+        return value == null ? defaultValue : value;
+    }
 
 }

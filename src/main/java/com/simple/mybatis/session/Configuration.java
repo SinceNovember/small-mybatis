@@ -1,9 +1,11 @@
 package com.simple.mybatis.session;
 
 import com.simple.mybatis.binding.MapperRegistry;
+import com.simple.mybatis.cache.Cache;
 import com.simple.mybatis.datasource.druid.DruidDataSourceFactory;
 import com.simple.mybatis.datasource.pooled.PooledDataSourceFactory;
 import com.simple.mybatis.datasource.unpooled.UnpooledDataSourceFactory;
+import com.simple.mybatis.executor.CachingExecutor;
 import com.simple.mybatis.executor.Executor;
 import com.simple.mybatis.executor.SimpleExecutor;
 import com.simple.mybatis.executor.keygen.KeyGenerator;
@@ -48,6 +50,8 @@ public class Configuration {
     protected Environment environment;
     protected boolean useGeneratedKeys = false;
 
+    protected boolean cacheEnabled = true;
+
     protected LocalCacheScope localCacheScope = LocalCacheScope.SESSION;
 
     // 映射注册机
@@ -55,6 +59,9 @@ public class Configuration {
 
     // 映射的语句，存在Map里
     protected final Map<String, MappedStatement> mappedStatements = new HashMap<>();
+
+    // 缓存,存在Map里
+    protected final Map<String, Cache> caches = new HashMap<>();
 
     // 结果映射，存在Map里
     protected final Map<String, ResultMap> resultMaps = new HashMap<>();
@@ -141,7 +148,12 @@ public class Configuration {
      * 生产执行器
      */
     public Executor newExecutor(Transaction transaction) {
-        return new SimpleExecutor(this, transaction);
+        Executor executor = new SimpleExecutor(this, transaction);
+        // 配置开启缓存，创建 CachingExecutor(默认就是有缓存)装饰者模式
+        if (cacheEnabled) {
+            executor = new CachingExecutor(executor);
+        }
+        return executor;
     }
 
     /**
@@ -230,5 +242,22 @@ public class Configuration {
     public void setLocalCacheScope(LocalCacheScope localCacheScope) {
         this.localCacheScope = localCacheScope;
     }
+
+    public boolean isCacheEnabled() {
+        return cacheEnabled;
+    }
+
+    public void setCacheEnabled(boolean cacheEnabled) {
+        this.cacheEnabled = cacheEnabled;
+    }
+
+    public void addCache(Cache cache) {
+        caches.put(cache.getId(), cache);
+    }
+
+    public Cache getCache(String id) {
+        return caches.get(id);
+    }
+
 
 }

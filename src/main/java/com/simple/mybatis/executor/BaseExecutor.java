@@ -156,6 +156,11 @@ public abstract class BaseExecutor implements Executor {
     }
 
     @Override
+    public void setExecutorWrapper(Executor executor) {
+        this.wrapper = executor;
+    }
+
+    @Override
     public CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowBounds rowBounds, BoundSql boundSql) {
         if (closed) {
             throw new RuntimeException("Executor was closed.");

@@ -91,6 +91,7 @@ public class MapperAnnotationBuilder {
                 resultMapId = parseResultMap(method);
             }
 
+            // 调用助手类
             assistant.addMappedStatement(
                     mappedStatementId,
                     sqlSource,
@@ -98,6 +99,8 @@ public class MapperAnnotationBuilder {
                     parameterTypeClass,
                     resultMapId,
                     getReturnType(method),
+                    false,
+                    false,
                     keyGenerator,
                     keyProperty,
                     languageDriver

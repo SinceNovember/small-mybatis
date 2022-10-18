@@ -55,6 +55,8 @@ public class XMLConfigBuilder extends BaseBuilder {
         try {
             // 插件 step-16 添加
             pluginElement(root.element("plugins"));
+            // 设置
+            settingsElement(root.element("settings"));
             // 环境
             environmentsElement(root.element("environments"));
             // 解析映射器
@@ -96,6 +98,8 @@ public class XMLConfigBuilder extends BaseBuilder {
 
     /**
      * <settings>
+     *     <!-- 全局缓存：true/false -->
+     *     <setting name="cacheEnabled" value="false"/>
      *     <!--缓存级别：SESSION/STATEMENT-->
      *     <setting name="localCacheScope" value="SESSION"/>
      * </settings>
@@ -109,6 +113,7 @@ public class XMLConfigBuilder extends BaseBuilder {
         for (Element element : elements) {
             properties.setProperty(element.attributeValue("name"), element.attributeValue("value"));
         }
+        configuration.setCacheEnabled(booleanValueOf(properties.getProperty("cacheEnabled"), true));
         configuration.setLocalCacheScope(LocalCacheScope.valueOf(properties.getProperty("localCacheScope")));
     }
 
