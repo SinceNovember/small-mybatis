@@ -6,7 +6,7 @@ package com.simple.mybatis.parsing;
  * @author SinceNovember
  * @date 2022/10/5
  */
-public class GenericTokenParser{
+public class GenericTokenParser {
 
     // 有一个开始和结束记号
     private final String openToken;

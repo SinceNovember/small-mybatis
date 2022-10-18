@@ -4,6 +4,6 @@ import com.simple.mybatis.test.po.Activity;
 
 public interface IActivityDao {
 
-    Activity queryActivityById(Long activityId);
+    Activity queryActivityById(Activity activity);
 
 }
