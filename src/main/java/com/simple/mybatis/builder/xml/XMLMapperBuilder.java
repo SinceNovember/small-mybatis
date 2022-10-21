@@ -73,9 +73,13 @@ public class XMLMapperBuilder extends BaseBuilder {
         }
         builderAssistant.setCurrentNamespace(namespace);
 
+        // 2. 配置cache
+        cacheElement(element.element("cache"));
+
+        // 3. 解析resultMap step-13 新增
         resultMapElements(element.elements("resultMap"));
 
-        // 2.配置select|insert|update|delete
+        // 4. 配置select|insert|update|delete
         buildStatementFromContext(element.elements("select"),
                 element.elements("insert"),
                 element.elements("update"),

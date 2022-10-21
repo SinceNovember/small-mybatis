@@ -1,10 +1,13 @@
-package com.simple.mybatis.test.dao;
+package com.simple.mybatis.dao;
+
+
 
 import com.simple.mybatis.annotations.Insert;
 import com.simple.mybatis.annotations.Mapper;
 import com.simple.mybatis.annotations.Select;
 import com.simple.mybatis.annotations.Update;
-import com.simple.mybatis.test.po.User;
+import com.simple.mybatis.po.User;
+
 
 import java.util.List;
 

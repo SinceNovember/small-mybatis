@@ -6,7 +6,12 @@
 
     <groupId>com.simple</groupId>
     <artifactId>small-mybatis</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>small-mybatis-spring</module>
+        <module>small-mybatis-spring-test</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -88,6 +93,7 @@
             <artifactId>guava</artifactId>
             <version>30.1.1-jre</version>
         </dependency>
+
 
     </dependencies>
 

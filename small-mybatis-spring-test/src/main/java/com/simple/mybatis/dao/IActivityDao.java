@@ -1,7 +1,8 @@
-package com.simple.mybatis.test.dao;
+package com.simple.mybatis.dao;
+
 
 import com.simple.mybatis.annotations.Mapper;
-import com.simple.mybatis.test.po.Activity;
+import com.simple.mybatis.po.Activity;
 
 @Mapper
 public interface IActivityDao {

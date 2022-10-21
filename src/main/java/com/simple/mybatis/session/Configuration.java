@@ -259,5 +259,58 @@ public class Configuration {
         return caches.get(id);
     }
 
+    public MapperRegistry getMapperRegistry() {
+        return mapperRegistry;
+    }
 
+    public void setMapperRegistry(MapperRegistry mapperRegistry) {
+        this.mapperRegistry = mapperRegistry;
+    }
+
+    public Map<String, MappedStatement> getMappedStatements() {
+        return mappedStatements;
+    }
+
+    public Map<String, Cache> getCaches() {
+        return caches;
+    }
+
+    public Map<String, ResultMap> getResultMaps() {
+        return resultMaps;
+    }
+
+    public Map<String, KeyGenerator> getKeyGenerators() {
+        return keyGenerators;
+    }
+
+    public InterceptorChain getInterceptorChain() {
+        return interceptorChain;
+    }
+
+    public void setObjectFactory(ObjectFactory objectFactory) {
+        this.objectFactory = objectFactory;
+    }
+
+    public ObjectWrapperFactory getObjectWrapperFactory() {
+        return objectWrapperFactory;
+    }
+
+    public void setObjectWrapperFactory(ObjectWrapperFactory objectWrapperFactory) {
+        this.objectWrapperFactory = objectWrapperFactory;
+    }
+
+    public Set<String> getLoadedResources() {
+        return loadedResources;
+    }
+
+    public void setDatabaseId(String databaseId) {
+        this.databaseId = databaseId;
+    }
+
+    public void setDefaultScriptingLanguage(Class<? extends LanguageDriver> driver) {
+        if (driver == null) {
+            driver = XMLLanguageDriver.class;
+        }
+        getLanguageRegistry().setDefaultDriverClass(driver);
+    }
 }

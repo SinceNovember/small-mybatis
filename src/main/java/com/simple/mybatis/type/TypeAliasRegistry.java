@@ -1,5 +1,6 @@
 package com.simple.mybatis.type;
 
+import cn.hutool.core.annotation.Alias;
 import com.simple.mybatis.io.Resources;
 
 import java.util.HashMap;
@@ -34,6 +35,16 @@ public class TypeAliasRegistry {
     public void registerAlias(String alias, Class<?> value) {
         String key = alias.toLowerCase(Locale.ENGLISH);
         TYPE_ALIASES.put(key, value);
+    }
+
+    public void registerAlias(Class<?> type) {
+        String alias = type.getSimpleName();
+        Alias aliasAnnotation = (Alias)type.getAnnotation(Alias.class);
+        if (aliasAnnotation != null) {
+            alias = aliasAnnotation.value();
+        }
+
+        this.registerAlias(alias, type);
     }
 
     public <T> Class<T> resolveAlias(String string) {

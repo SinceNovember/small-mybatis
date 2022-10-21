@@ -34,6 +34,17 @@ public class LanguageDriverRegistry {
             }
         }
     }
+
+    public void register(LanguageDriver instance) {
+        if (instance == null) {
+            throw new IllegalArgumentException("null is not a valid Language Driver");
+        }
+        Class<? extends LanguageDriver> cls = instance.getClass();
+        if (!LANGUAGE_DRIVER_MAP.containsKey(cls)) {
+            LANGUAGE_DRIVER_MAP.put(cls, instance);
+        }
+    }
+
     public LanguageDriver getDriver(Class<?> cls) {
         return LANGUAGE_DRIVER_MAP.get(cls);
     }
