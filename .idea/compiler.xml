@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="small-mybatis-spring" />
         <module name="small-mybatis-spring-test" />
+        <module name="small-mybatis-spring-boot-starter" />
       </profile>
     </annotationProcessing>
   </component>

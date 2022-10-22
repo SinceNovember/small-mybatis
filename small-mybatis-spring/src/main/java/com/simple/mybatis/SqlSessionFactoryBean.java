@@ -49,7 +49,7 @@ import static org.springframework.util.StringUtils.hasLength;
 import static org.springframework.util.StringUtils.tokenizeToStringArray;
 
 /**
- * .
+ * 未自动注入 用于生成sqlSessionFactory时使用
  *
  * @author SinceNovember
  * @date 2022/10/21
